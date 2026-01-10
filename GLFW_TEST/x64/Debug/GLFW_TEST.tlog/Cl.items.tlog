@@ -1,0 +1,10 @@
+C:\Users\JHARDEE\source\repos\GLFW_TEST\glad.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\glad.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\main.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\main.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\model\Model.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Model.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl\Framebuffer.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Framebuffer.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl\OGLRenderer.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\OGLRenderer.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl\Shader.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Shader.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl\Texture.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Texture.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl\VertexBuffer.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\VertexBuffer.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\tools\Logger.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Logger.obj
+C:\Users\JHARDEE\source\repos\GLFW_TEST\window\Window.cpp;C:\Users\JHARDEE\source\repos\GLFW_TEST\GLFW_TEST\x64\Debug\Window.obj
