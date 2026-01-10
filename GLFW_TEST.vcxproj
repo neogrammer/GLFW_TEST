@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\sdks\include;C:\sdks\stb;C:\VulkanSDK\1.4.335.0\Include;C:\sdks\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\sdks\glfw\x64\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\x64\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\sdks\include;C:\sdks\stb;C:\VulkanSDK\1.4.335.0\Include;C:\sdks\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\sdks\glfw\x64\lib\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\x64\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
