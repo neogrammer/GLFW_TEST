@@ -2,17 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\JHARDEE\source\repos\GLFW_TEST\x64\Release\GLFW_TEST.exe</FullPath>
+      <FullPath>C:\dev\MyRenderer\GLFW_TEST\x64\Release\GLFW_TEST.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles>
-    <ContentFile>
-      <FullPath>C:\Users\JHARDEE\source\repos\GLFW_TEST\shader\basic.frag</FullPath>
-    </ContentFile>
-    <ContentFile>
-      <FullPath>C:\Users\JHARDEE\source\repos\GLFW_TEST\shader\basic.vert</FullPath>
-    </ContentFile>
-  </ContentFiles>
+  <ContentFiles />
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

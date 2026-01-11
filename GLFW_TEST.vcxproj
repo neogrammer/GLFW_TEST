@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\x64\lib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\dev\MyRenderer\GLFW_TEST\imgui;C:\VulkanSDK\1.4.335.0\Include\vma;$(ProjectDir)third_party;$(ProjectDir)third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\dev\MyRenderer\GLFW_TEST\third_party\vk_bootstrap;C:\dev\MyRenderer\GLFW_TEST\third_party\glfw\include;C:\dev\MyRenderer\GLFW_TEST\vulkan_renderer;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;$(ProjectDir)third_party\glfw\x64\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;C:\Users\JHARDEE\source\repos\GLFW_TEST\third_party\glfw\x64\lib\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\dev\MyRenderer\GLFW_TEST\imgui;C:\VulkanSDK\1.4.335.0\Include\vma;$(ProjectDir)third_party;$(ProjectDir)third_party\stb;C:\VulkanSDK\1.4.335.0\Include;C:\dev\MyRenderer\GLFW_TEST\third_party\vk_bootstrap;C:\dev\MyRenderer\GLFW_TEST\third_party\glfw\include;C:\dev\MyRenderer\GLFW_TEST\vulkan_renderer;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VulkanSDK\1.4.335.0\Lib;$(ProjectDir)third_party\glfw\x64\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,10 +110,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions> GLM_ENABLE_EXPERIMENTAL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\JHARDEE\source\repos\GLFW_TEST\window;C:\Users\JHARDEE\source\repos\GLFW_TEST\tools;C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl;C:\Users\JHARDEE\source\repos\GLFW_TEST\model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)window;$(ProjectDir)tools;$(ProjectDir)opengl;$(ProjectDir)model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,10 +127,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions> GLM_ENABLE_EXPERIMENTAL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\JHARDEE\source\repos\GLFW_TEST\window;C:\Users\JHARDEE\source\repos\GLFW_TEST\tools;C:\Users\JHARDEE\source\repos\GLFW_TEST\opengl;C:\Users\JHARDEE\source\repos\GLFW_TEST\model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)window;$(ProjectDir)tools;$(ProjectDir)opengl;$(ProjectDir)model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,36 +140,82 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_vulkan.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="model\ArrowModel.cpp" />
+    <ClCompile Include="model\CoordArrowsModel.cpp" />
     <ClCompile Include="model\Model.cpp" />
-    <ClCompile Include="opengl\Framebuffer.cpp" />
-    <ClCompile Include="opengl\OGLRenderer.cpp" />
-    <ClCompile Include="opengl\Shader.cpp" />
-    <ClCompile Include="opengl\Texture.cpp" />
-    <ClCompile Include="opengl\VertexBuffer.cpp" />
+    <ClCompile Include="model\SplineModel.cpp" />
+    <ClCompile Include="third_party\vk_bootstrap\VkBootstrap.cpp" />
+    <ClCompile Include="tools\Camera.cpp" />
     <ClCompile Include="tools\Logger.cpp" />
+    <ClCompile Include="tools\Timer.cpp" />
+    <ClCompile Include="vulkan\CommandBuffer.cpp" />
+    <ClCompile Include="vulkan\CommandPool.cpp" />
+    <ClCompile Include="vulkan\Framebuffer.cpp" />
+    <ClCompile Include="vulkan\Pipeline.cpp" />
+    <ClCompile Include="vulkan\PipelineLayout.cpp" />
+    <ClCompile Include="vulkan\Renderpass.cpp" />
+    <ClCompile Include="vulkan\Shader.cpp" />
+    <ClCompile Include="vulkan\SyncObjects.cpp" />
+    <ClCompile Include="vulkan\Texture.cpp" />
+    <ClCompile Include="vulkan\UniformBuffer.cpp" />
+    <ClCompile Include="vulkan\UserInterface.cpp" />
+    <ClCompile Include="vulkan\VertexBuffer.cpp" />
+    <ClCompile Include="vulkan\VkRenderer.cpp" />
     <ClCompile Include="window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="imgui\imgui_impl_vulkan.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="model\ArrowModel.h" />
+    <ClInclude Include="model\CoordArrowsModel.h" />
     <ClInclude Include="model\Model.h" />
-    <ClInclude Include="opengl\Framebuffer.h" />
-    <ClInclude Include="opengl\OGLRenderData.h" />
-    <ClInclude Include="opengl\OGLRenderer.h" />
-    <ClInclude Include="opengl\Shader.h" />
-    <ClInclude Include="opengl\Texture.h" />
-    <ClInclude Include="opengl\VertexBuffer.h" />
+    <ClInclude Include="model\SplineModel.h" />
+    <ClInclude Include="third_party\glad\glad.h" />
+    <ClInclude Include="third_party\glfw\include\GLFW\glfw3.h" />
+    <ClInclude Include="third_party\stb\stb_image.h" />
+    <ClInclude Include="third_party\vk_bootstrap\VkBootstrap.h" />
+    <ClInclude Include="third_party\vk_bootstrap\VkBootstrapDispatch.h" />
+    <ClInclude Include="third_party\vk_bootstrap\VkBootstrapFeatureChain.h" />
+    <ClInclude Include="tools\Camera.h" />
     <ClInclude Include="tools\Logger.h" />
+    <ClInclude Include="tools\Timer.h" />
+    <ClInclude Include="vulkan\CommandBuffer.h" />
+    <ClInclude Include="vulkan\CommandPool.h" />
+    <ClInclude Include="vulkan\Framebuffer.h" />
+    <ClInclude Include="vulkan\Pipeline.h" />
+    <ClInclude Include="vulkan\PipelineLayout.h" />
+    <ClInclude Include="vulkan\Renderpass.h" />
+    <ClInclude Include="vulkan\Shader.h" />
+    <ClInclude Include="vulkan\SyncObjects.h" />
+    <ClInclude Include="vulkan\Texture.h" />
+    <ClInclude Include="vulkan\UniformBuffer.h" />
+    <ClInclude Include="vulkan\UserInterface.h" />
+    <ClInclude Include="vulkan\VertexBuffer.h" />
+    <ClInclude Include="vulkan\VkRenderData.h" />
+    <ClInclude Include="vulkan\VkRenderer.h" />
     <ClInclude Include="window\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\basic.frag">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
-    </None>
-    <None Include="shader\basic.vert">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
-    </None>
+    <None Include="shader\basic.frag" />
+    <None Include="shader\basic.vert" />
+    <None Include="shader\changed.frag" />
+    <None Include="shader\changed.vert" />
+    <None Include="shader\line.frag" />
+    <None Include="shader\line.vert" />
+    <None Include="third_party\vk_bootstrap\VkBootstrapFeatureChain.inl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\crate.png" />

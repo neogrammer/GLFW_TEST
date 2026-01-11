@@ -2,14 +2,13 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-#include "OGLRenderData.h"
+#include "../vulkan/VkRenderData.h"
 
 class Model {
   public:
-    void init();
-
-    OGLMesh getVertexData();
+    VkMesh getVertexData();
 
   private:
-    OGLMesh mVertexData;
+    void init();
+    VkMesh mVertexData;
 };

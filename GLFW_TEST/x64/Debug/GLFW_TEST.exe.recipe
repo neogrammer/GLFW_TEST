@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\JHARDEE\source\repos\GLFW_TEST\x64\Debug\GLFW_TEST.exe</FullPath>
+      <FullPath>C:\dev\MyRenderer\GLFW_TEST\x64\Debug\GLFW_TEST.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
