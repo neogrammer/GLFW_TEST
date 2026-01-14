@@ -15,6 +15,7 @@
 #include "../tools/Timer.h"
 #include "Renderpass.h"
 #include "Pipeline.h"
+#include "GltfPipeline.h"
 #include "PipelineLayout.h"
 #include "Framebuffer.h"
 #include "CommandPool.h"
@@ -23,17 +24,19 @@
 #include "Texture.h"
 #include "UniformBuffer.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "UserInterface.h"
 #include "../tools/Camera.h"
 #include "../model/Model.h"
 #include "../model/CoordArrowsModel.h"
 #include "../model/ArrowModel.h"
 #include "../model/SplineModel.h"
+#include "../model/GltfModel.h"
 #include "VkRenderData.h"
 
 class VkRenderer {
-  public:
-    VkRenderer(GLFWwindow *window);
+public:
+    VkRenderer(GLFWwindow* window);
 
     bool init(unsigned int width, unsigned int height);
     void setSize(unsigned int width, unsigned int height);
@@ -44,32 +47,41 @@ class VkRenderer {
 
     void cleanup();
 
-  private:
+private:
     VkRenderData mRenderData{};
+    VkGltfRenderData mGltfRenderData{};
 
     UserInterface mUserInterface{};
     Camera mCamera{};
 
     CoordArrowsModel mCoordArrowsModel{};
     VkMesh mCoordArrowsMesh{};
+    VkMesh mEulerCoordArrowsMesh{};
 
     ArrowModel mArrowModel{};
-    VkMesh mStartPosArrowMesh{};
-    VkMesh mEndPosArrowMesh{};
-    VkMesh mQuatPosArrowMesh{};
-
-    SplineModel mSplineModel{};
-    VkMesh mSplineMesh{};
+    VkMesh mQuatArrowMesh{};
 
     std::unique_ptr<Model> mModel = nullptr;
-    std::unique_ptr<VkMesh> mModelMesh = nullptr;
+    std::unique_ptr<VkMesh> mEulerModelMesh = nullptr;
+    std::unique_ptr<VkMesh> mQuatModelMesh = nullptr;
     std::unique_ptr<VkMesh> mAllMeshes = nullptr;
     unsigned int mLineIndexCount = 0;
 
-    glm::quat mQuatModelOrientation[2] = { glm::quat(), glm::quat() };
-    glm::quat mQuatModelOrientationConjugate[2] = { glm::quat(), glm::quat() };
-    glm::quat mQuatMix = glm::quat();
-    glm::quat mQuatMixConjugate = glm::quat();
+    std::shared_ptr<GltfModel> mGltfModel = nullptr;
+
+    glm::mat4 mRotYMat = glm::mat4(1.0f);
+    glm::mat4 mRotZMat = glm::mat4(1.0f);
+
+    glm::vec3 mEulerModelDist = glm::vec3(-2.5f, 0.0f, 0.0f);
+    glm::vec3 mQuatModelDist = glm::vec3(2.5f, 0.0f, 0.0f);
+
+    glm::vec3 mRotXAxis = glm::vec3(1.0f, 0.0f, 0.0f);
+    glm::vec3 mRotYAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 mRotZAxis = glm::vec3(0.0f, 0.0f, 1.0f);
+
+    glm::mat3 mEulerRotMatrix = glm::mat3(1.0f);
+    glm::quat mQuatModelOrientation = glm::quat();
+    glm::quat mQuatModelOrientConjugate = glm::quat();
 
     bool mMouseLock = false;
     int mMouseXPos = 0;
@@ -105,12 +117,15 @@ class VkRenderer {
     bool createPipelineLayout();
     bool createBasicPipeline();
     bool createLinePipeline();
+    bool createGltfPipelineLayout();
+    bool createGltfPipeline();
     bool createFramebuffer();
     bool createCommandPool();
     bool createCommandBuffer();
     bool createSyncObjects();
     bool loadTexture();
     bool initUserInterface();
+    bool loadGltfModel();
 
     bool initVma();
 

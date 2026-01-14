@@ -2,7 +2,6 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "../imgui/imgui_impl_glfw.h"
 #include "../imgui/imgui_impl_vulkan.h"
@@ -10,7 +9,6 @@
 #include "UserInterface.h"
 #include "CommandBuffer.h"
 #include "../tools/Logger.h"
-
 
 bool UserInterface::init(VkRenderData& renderData) {
   IMGUI_CHECKVERSION();
@@ -160,7 +158,7 @@ void UserInterface::createFrame(VkRenderData& renderData) {
   if (ImGui::CollapsingHeader("Info")) {
     ImGui::Text("Triangles:");
     ImGui::SameLine();
-    ImGui::Text("%s", std::to_string(renderData.rdTriangleCount).c_str());
+    ImGui::Text("%s", std::to_string(renderData.rdTriangleCount + renderData.rdGltfTriangleCount).c_str());
 
     std::string windowDims = std::to_string(renderData.rdWidth) + "x" + std::to_string(renderData.rdHeight);
     ImGui::Text("Window Dimensions:");
@@ -229,69 +227,33 @@ void UserInterface::createFrame(VkRenderData& renderData) {
     ImGui::SliderInt("##FOV", &renderData.rdFieldOfView, 40, 150);
   }
 
-  if (ImGui::CollapsingHeader("SLERP + Spline")) {
-    ImGui::Indent();
+  if (ImGui::CollapsingHeader("Angles")) {
+    ImGui::Checkbox("Draw World Coordinate Arrows", &renderData.rdDrawWorldCoordArrows);
+    ImGui::Checkbox("Draw Model Coordinate Arrows", &renderData.rdDrawModelCoordArrows);
 
-    if (ImGui::Button("Reset All")) {
-      renderData.rdResetAnglesAndInterp = true;
+    if (ImGui::Button("Reset Rotation")) {
+      renderData.rdResetAngles = true;
     }
 
-    ImGui::Text("Interpolate");
+    ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
+    ImGui::Text("X Rotation");
+    ImGui::PopStyleColor();
     ImGui::SameLine();
-    ImGui::SliderFloat("##Interp", &renderData.rdInterpValue, 0.0f, 1.0f);
+    ImGui::SliderInt("##ROTX", &renderData.rdRotXAngle, 0, 360);
 
-    if (ImGui::CollapsingHeader("SLERP")) {
-      ImGui::Checkbox("Draw World Coordinate Arrows", &renderData.rdDrawWorldCoordArrows);
-      ImGui::Checkbox("Draw Model Coordinate Arrows", &renderData.rdDrawModelCoordArrows);
+    ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 0, 255));
+    ImGui::Text("Y Rotation");
+    ImGui::PopStyleColor();
+    ImGui::SameLine();
+    ImGui::SliderInt("##ROTY", &renderData.rdRotYAngle, 0, 360);
 
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
-      ImGui::Text("X Rotation ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderInt2("##ROTX", renderData.rdRotXAngle.data(), 0, 360);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 0, 255));
-      ImGui::Text("Y Rotation ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderInt2("##ROTY", renderData.rdRotYAngle.data(), 0, 360);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 0, 255, 255));
-      ImGui::Text("Z Rotation ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderInt2("##ROTZ", renderData.rdRotZAngle.data(), 0, 360);
-    }
-
-    if (ImGui::CollapsingHeader("Spline")) {
-      ImGui::Checkbox("Draw Spline lines", &renderData.rdDrawSplineLines);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 0, 0, 255));
-      ImGui::Text("Start Vec  ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderFloat3("##STARTVEC", glm::value_ptr(renderData.rdSplineStartVertex), -10.0f, 10.0f);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 0, 0, 255));
-      ImGui::Text("Start Tang ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderFloat3("##STARTTANG", glm::value_ptr(renderData.rdSplineStartTangent), -10.0f, 10.0f);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 255, 255));
-      ImGui::Text("End Vec    ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderFloat3("##ENDVEC", glm::value_ptr(renderData.rdSplineEndVertex), -10.0f, 10.0f);
-
-      ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 255, 255));
-      ImGui::Text("End Tang   ");
-      ImGui::PopStyleColor();
-      ImGui::SameLine();
-      ImGui::SliderFloat3("##ENDTANG", glm::value_ptr(renderData.rdSplineEndTangent), -10.0f, 10.0f);
-    }
-    ImGui::Unindent();
+    ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 0, 255, 255));
+    ImGui::Text("Z Rotation");
+    ImGui::PopStyleColor();
+    ImGui::SameLine();
+    ImGui::SliderInt("##ROTZ", &renderData.rdRotZAngle, 0, 360);
   }
+
   ImGui::End();
 }
 

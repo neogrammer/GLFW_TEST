@@ -70,6 +70,15 @@
     <Filter Include="Source Files\window">
       <UniqueIdentifier>{f694d79a-a204-432f-bc1c-b462838bda0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tinygltf">
+      <UniqueIdentifier>{9b4434c4-ce2c-4e3e-a387-8a1406d05b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\tinygltf">
+      <UniqueIdentifier>{85eaf39a-69d0-40bd-b8ca-b1ec052a10ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\assets">
+      <UniqueIdentifier>{afef4373-6212-48c1-ad60-11cd1dce25d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.cpp">
@@ -161,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="window\Window.cpp">
       <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\tinygltf\tiny_gltf.cc">
+      <Filter>third_party\tinygltf</Filter>
+    </ClCompile>
+    <ClCompile Include="model\GltfModel.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +287,18 @@
     <ClInclude Include="window\Window.h">
       <Filter>Header Files\window</Filter>
     </ClInclude>
+    <ClInclude Include="third_party\stb\stb_image_write.h">
+      <Filter>third_party\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\tinygltf\json.hpp">
+      <Filter>third_party\tinygltf</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\tinygltf\tiny_gltf.h">
+      <Filter>third_party\tinygltf</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GltfModel.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="third_party\vk_bootstrap\VkBootstrapFeatureChain.inl">
@@ -294,6 +321,18 @@
     </None>
     <None Include="shader\line.vert">
       <Filter>Resource Files\Shader Files</Filter>
+    </None>
+    <None Include="shader\gltf.frag">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
+    <None Include="shader\gltf.vert">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
+    <None Include="assets\basic.gltf">
+      <Filter>Resource Files\assets</Filter>
+    </None>
+    <None Include="assets\Woman.gltf">
+      <Filter>Resource Files\assets</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

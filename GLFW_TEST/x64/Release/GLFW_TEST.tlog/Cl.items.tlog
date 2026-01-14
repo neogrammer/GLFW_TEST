@@ -8,8 +8,10 @@ C:\dev\MyRenderer\GLFW_TEST\imgui\imgui_widgets.cpp;C:\dev\MyRenderer\GLFW_TEST\
 C:\dev\MyRenderer\GLFW_TEST\main.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\main.obj
 C:\dev\MyRenderer\GLFW_TEST\model\ArrowModel.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\ArrowModel.obj
 C:\dev\MyRenderer\GLFW_TEST\model\CoordArrowsModel.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\CoordArrowsModel.obj
+C:\dev\MyRenderer\GLFW_TEST\model\GltfModel.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\GltfModel.obj
 C:\dev\MyRenderer\GLFW_TEST\model\Model.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Model.obj
 C:\dev\MyRenderer\GLFW_TEST\model\SplineModel.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\SplineModel.obj
+C:\dev\MyRenderer\GLFW_TEST\third_party\tinygltf\tiny_gltf.cc;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\tiny_gltf.obj
 C:\dev\MyRenderer\GLFW_TEST\third_party\vk_bootstrap\VkBootstrap.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\VkBootstrap.obj
 C:\dev\MyRenderer\GLFW_TEST\tools\Camera.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Camera.obj
 C:\dev\MyRenderer\GLFW_TEST\tools\Logger.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Logger.obj
@@ -17,6 +19,8 @@ C:\dev\MyRenderer\GLFW_TEST\tools\Timer.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TES
 C:\dev\MyRenderer\GLFW_TEST\vulkan\CommandBuffer.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\CommandBuffer.obj
 C:\dev\MyRenderer\GLFW_TEST\vulkan\CommandPool.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\CommandPool.obj
 C:\dev\MyRenderer\GLFW_TEST\vulkan\Framebuffer.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Framebuffer.obj
+C:\dev\MyRenderer\GLFW_TEST\vulkan\GltfPipeline.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\GltfPipeline.obj
+C:\dev\MyRenderer\GLFW_TEST\vulkan\IndexBuffer.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\IndexBuffer.obj
 C:\dev\MyRenderer\GLFW_TEST\vulkan\Pipeline.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Pipeline.obj
 C:\dev\MyRenderer\GLFW_TEST\vulkan\PipelineLayout.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\PipelineLayout.obj
 C:\dev\MyRenderer\GLFW_TEST\vulkan\Renderpass.cpp;C:\dev\MyRenderer\GLFW_TEST\GLFW_TEST\x64\Release\Renderpass.obj

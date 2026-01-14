@@ -1,13 +1,12 @@
 #include "PipelineLayout.h"
 #include "../tools/Logger.h"
 
+#include "../vk_bootstrap/VkBootstrap.h"
 
-#include "../third_party/vk_bootstrap/VkBootstrap.h"
 
+bool PipelineLayout::init(VkRenderData &renderData, VkTextureData &textureData, VkPipelineLayout &pipelineLayout) {
 
-bool PipelineLayout::init(VkRenderData& renderData, VkPipelineLayout& pipelineLayout) {
-
-  VkDescriptorSetLayout layouts [] = { renderData.rdTextureDescriptorLayout , renderData.rdUBODescriptorLayout };
+  VkDescriptorSetLayout layouts [] = { textureData.texTextureDescriptorLayout, renderData.rdUBODescriptorLayout };
 
   VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
   pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;

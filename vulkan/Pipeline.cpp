@@ -1,61 +1,60 @@
 #include <vector>
 
-#include "../third_party/vk_bootstrap/VkBootstrap.h"
+#include "../vk_bootstrap/VkBootstrap.h"
 
 
 #include "Pipeline.h"
 #include "../tools/Logger.h"
-
 #include "Shader.h"
 
 bool Pipeline::init(VkRenderData& renderData, VkPipelineLayout& pipelineLayout, VkPipeline& pipeline, VkPrimitiveTopology topology, std::string vertexShaderFilename, std::string fragmentShaderFilename) {
-    /* shader */
-    VkShaderModule vertexModule = Shader::loadShader(renderData.rdVkbDevice.device, vertexShaderFilename);
-    VkShaderModule fragmentModule = Shader::loadShader(renderData.rdVkbDevice.device, fragmentShaderFilename);
+  /* shader */
+  VkShaderModule vertexModule = Shader::loadShader(renderData.rdVkbDevice.device, vertexShaderFilename);
+  VkShaderModule fragmentModule = Shader::loadShader(renderData.rdVkbDevice.device, fragmentShaderFilename);
 
-    if (vertexModule == VK_NULL_HANDLE || fragmentModule == VK_NULL_HANDLE) {
-        Logger::log(1, "%s error: could not load shaders\n", __FUNCTION__);
-        return false;
-    }
+  if (vertexModule == VK_NULL_HANDLE || fragmentModule == VK_NULL_HANDLE) {
+    Logger::log(1, "%s error: could not load shaders\n", __FUNCTION__);
+    return false;
+  }
 
-    VkPipelineShaderStageCreateInfo vertexStageInfo{};
-    vertexStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    vertexStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    vertexStageInfo.module = vertexModule;
-    vertexStageInfo.pName = "main";
+  VkPipelineShaderStageCreateInfo vertexStageInfo{};
+  vertexStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+  vertexStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
+  vertexStageInfo.module = vertexModule;
+  vertexStageInfo.pName = "main";
 
-    VkPipelineShaderStageCreateInfo fragmentStageInfo{};
-    fragmentStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    fragmentStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragmentStageInfo.module = fragmentModule;
-    fragmentStageInfo.pName = "main";
+  VkPipelineShaderStageCreateInfo fragmentStageInfo{};
+  fragmentStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+  fragmentStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+  fragmentStageInfo.module = fragmentModule;
+  fragmentStageInfo.pName = "main";
 
-    VkPipelineShaderStageCreateInfo shaderStagesInfo[] = { vertexStageInfo, fragmentStageInfo };
+  VkPipelineShaderStageCreateInfo shaderStagesInfo[] = { vertexStageInfo, fragmentStageInfo };
 
-    /* assemble the graphics pipeline itself */
+  /* assemble the graphics pipeline itself */
 
-    VkVertexInputBindingDescription mainBinding{};
-    mainBinding.binding = 0;
-    mainBinding.stride = sizeof(VkVertex);
-    mainBinding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+  VkVertexInputBindingDescription mainBinding{};
+  mainBinding.binding = 0;
+  mainBinding.stride = sizeof(VkVertex);
+  mainBinding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
-    VkVertexInputAttributeDescription positionAttribute{};
-    positionAttribute.binding = 0;
-    positionAttribute.location = 0;
-    positionAttribute.format = VK_FORMAT_R32G32B32_SFLOAT;
-    positionAttribute.offset = offsetof(VkVertex, position);
+  VkVertexInputAttributeDescription positionAttribute{};
+  positionAttribute.binding = 0;
+  positionAttribute.location = 0;
+  positionAttribute.format = VK_FORMAT_R32G32B32_SFLOAT;
+  positionAttribute.offset = offsetof(VkVertex, position);
 
-    VkVertexInputAttributeDescription colorAttribute{};
-    colorAttribute.binding = 0;
-    colorAttribute.location = 1;
-    colorAttribute.format = VK_FORMAT_R32G32B32_SFLOAT;
-    colorAttribute.offset = offsetof(VkVertex, color);
+  VkVertexInputAttributeDescription colorAttribute{};
+  colorAttribute.binding = 0;
+  colorAttribute.location = 1;
+  colorAttribute.format = VK_FORMAT_R32G32B32_SFLOAT;
+  colorAttribute.offset = offsetof(VkVertex, color);
 
-    VkVertexInputAttributeDescription uvAttribute{};
-    uvAttribute.binding = 0;
-    uvAttribute.location = 2;
-    uvAttribute.format = VK_FORMAT_R32G32_SFLOAT;
-    uvAttribute.offset = offsetof(VkVertex, uv);
+  VkVertexInputAttributeDescription uvAttribute{};
+  uvAttribute.binding = 0;
+  uvAttribute.location = 2;
+  uvAttribute.format = VK_FORMAT_R32G32_SFLOAT;
+  uvAttribute.offset = offsetof(VkVertex, uv);
 
   VkVertexInputAttributeDescription attributes[] = { positionAttribute, colorAttribute, uvAttribute };
 

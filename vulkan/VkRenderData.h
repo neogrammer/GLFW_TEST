@@ -5,10 +5,12 @@
 #include <glm/glm.hpp>
 
 #include <vulkan/vulkan.h>
-#include <GLFW/glfw3.h>
+#include "../third_party/glfw/include/GLFW/glfw3.h"
 
-#include "../third_party/vk_bootstrap/VkBootstrap.h"
-#include <vma/vk_mem_alloc.h>
+
+#include "../vk_bootstrap/VkBootstrap.h"
+
+#include <../vma/vk_mem_alloc.h>
 
 struct VkVertex {
   glm::vec3 position;
@@ -25,6 +27,33 @@ struct VkUploadMatrices {
   glm::mat4 projectionMatrix;
 };
 
+struct VkTextureData {
+  VkImage texTextureImage = VK_NULL_HANDLE;
+  VkImageView texTextureImageView = VK_NULL_HANDLE;
+  VkSampler texTextureSampler = VK_NULL_HANDLE;
+  VmaAllocation texTextureImageAlloc = nullptr;
+
+  VkDescriptorPool texTextureDescriptorPool = VK_NULL_HANDLE;
+  VkDescriptorSetLayout texTextureDescriptorLayout = VK_NULL_HANDLE;
+  VkDescriptorSet texTextureDescriptorSet = VK_NULL_HANDLE;
+};
+
+struct VkVertexBufferData {
+  unsigned int rdVertexBufferSize = 0;
+	VkBuffer rdVertexBuffer = VK_NULL_HANDLE;
+	VmaAllocation rdVertexBufferAlloc = nullptr;
+	VkBuffer rdStagingBuffer = VK_NULL_HANDLE;
+	VmaAllocation rdStagingBufferAlloc = nullptr;
+};
+
+struct VkIndexBufferData {
+  unsigned int rdIndexBufferSize = 0;
+	VkBuffer rdIndexBuffer = VK_NULL_HANDLE;
+	VmaAllocation rdIndexBufferAlloc = nullptr;
+	VkBuffer rdStagingBuffer = VK_NULL_HANDLE;
+	VmaAllocation rdStagingBufferAlloc = nullptr;
+};
+
 struct VkRenderData {
   GLFWwindow *rdWindow = nullptr;
 
@@ -32,6 +61,7 @@ struct VkRenderData {
   int rdHeight = 0;
 
   unsigned int rdTriangleCount = 0;
+  unsigned int rdGltfTriangleCount = 0;
 
   int rdFieldOfView = 60;
 
@@ -48,24 +78,17 @@ struct VkRenderData {
 
   float rdTickDiff = 0.0f;
 
-  float rdViewAzimuth = 0.0f;
+  float rdViewAzimuth = 230.0f;
   float rdViewElevation = -15.0f;
-  glm::vec3 rdCameraWorldPosition = glm::vec3(-0.5f, 3.0f, 6.0f);
+  glm::vec3 rdCameraWorldPosition = glm::vec3(6.0f, 4.0f, -4.0f);
 
   bool rdDrawWorldCoordArrows = true;
   bool rdDrawModelCoordArrows = true;
-  bool rdDrawSplineLines = true;
-  bool rdResetAnglesAndInterp = true;
+  bool rdResetAngles = false;
 
-  std::vector<int> rdRotXAngle = { 0, 0 };
-  std::vector<int> rdRotYAngle = { 0, 0 };
-  std::vector<int> rdRotZAngle = { 0, 0 };
-
-  glm::vec3 rdSplineStartVertex = glm::vec3(0.0f);
-  glm::vec3 rdSplineStartTangent = glm::vec3(0.0f);
-  glm::vec3 rdSplineEndVertex = glm::vec3(0.0f);
-  glm::vec3 rdSplineEndTangent = glm::vec3(0.0f);
-  float rdInterpValue = 0.0f;
+  int rdRotXAngle = 0;
+  int rdRotYAngle = 0;
+  int rdRotZAngle = 0;
 
   VmaAllocator rdAllocator = nullptr;
 
@@ -91,6 +114,9 @@ struct VkRenderData {
   VkPipeline rdBasicPipeline = VK_NULL_HANDLE;
   VkPipeline rdLinePipeline = VK_NULL_HANDLE;
 
+  VkPipelineLayout rdGltfPipelineLayout = VK_NULL_HANDLE;
+  VkPipeline rdGltfPipeline = VK_NULL_HANDLE;
+
   VkCommandPool rdCommandPool = VK_NULL_HANDLE;
   VkCommandBuffer rdCommandBuffer = VK_NULL_HANDLE;
 
@@ -98,20 +124,9 @@ struct VkRenderData {
   VkSemaphore rdRenderSemaphore = VK_NULL_HANDLE;
   VkFence rdRenderFence = VK_NULL_HANDLE;
 
-  VkImage rdTextureImage = VK_NULL_HANDLE;
-  VkImageView rdTextureImageView = VK_NULL_HANDLE;
-  VkSampler rdTextureSampler = VK_NULL_HANDLE;
-  VmaAllocation rdTextureImageAlloc = nullptr;
+  VkTextureData rdModelTexture{};
 
-  VkDescriptorPool rdTextureDescriptorPool = VK_NULL_HANDLE;
-  VkDescriptorSetLayout rdTextureDescriptorLayout = VK_NULL_HANDLE;
-  VkDescriptorSet rdTextureDescriptorSet = VK_NULL_HANDLE;
-
-  unsigned int rdVertexBufferSize = 2048;
-  VkBuffer rdVertexBuffer = VK_NULL_HANDLE;
-  VmaAllocation rdVertexBufferAlloc = nullptr;
-  VkBuffer rdVertexStagingBuffer = VK_NULL_HANDLE;
-  VmaAllocation rdVertexStagingBufferAlloc = nullptr;
+  VkVertexBufferData rdVertexBufferData{};
 
   VkBuffer rdUboBuffer = VK_NULL_HANDLE;
   VmaAllocation rdUboBufferAlloc = nullptr;
@@ -121,4 +136,10 @@ struct VkRenderData {
   VkDescriptorSet rdUBODescriptorSet = VK_NULL_HANDLE;
 
   VkDescriptorPool rdImguiDescriptorPool = VK_NULL_HANDLE;
+};
+
+struct VkGltfRenderData {
+  std::vector<VkVertexBufferData> rdGltfVertexBufferData{};
+  VkIndexBufferData rdGltfIndexBufferData{};
+	VkTextureData rdGltfModelTexture{};
 };
